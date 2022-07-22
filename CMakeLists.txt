@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.22)
 project(RnENative)
 
-include_directories(/usr/include/opencv4)
+include_directories(/usr/local/include/opencv4)
 
 link_libraries(opencv_core)
 link_libraries(opencv_videoio)

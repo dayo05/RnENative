@@ -93,3 +93,32 @@ void grayscale(void* img) {
     auto image = static_cast<cv::Mat *>(img);
     cv::cvtColor(*image, *image, cv::COLOR_RGB2GRAY);
 }
+
+static cv::Mat m;
+
+void* clone_mat(void* a) {
+    m = static_cast<cv::Mat *>(a)->clone();
+    return &m;
+}
+
+int get_total_frame(void* vcv) {
+    auto vc = static_cast<cv::VideoCapture*>(vcv);
+    return (int)(vc->get(cv::CAP_PROP_FRAME_COUNT));
+}
+
+double get_fps(void* vcv) {
+    auto vc = static_cast<cv::VideoCapture*>(vcv);
+    return vc->get(cv::CAP_PROP_FPS);
+}
+
+int get_total_time(void* vcv) {
+    auto vc = static_cast<cv::VideoCapture*>(vcv);
+    vc->set(cv::CAP_PROP_POS_AVI_RATIO, 1);
+    auto k = (int)(vc->get(cv::CAP_PROP_POS_FRAMES));
+    vc->set(cv::CAP_PROP_POS_AVI_RATIO, 0);
+    return k;
+}
+
+int validate_mat(void* m) {
+    return static_cast<cv::Mat *>(m)->empty();
+}

@@ -16,6 +16,11 @@ extern "C" {
     void* create_mat();
     void save_image(void*, const char*);
     void grayscale(void*);
+    void* clone_mat(void*);
+    int get_total_frame(void*);
+    double get_fps(void*);
+    int get_total_time(void*);
+    int validate_mat(void*);
 };
 
 #endif //RNENATIVE_LIBRARY_H
